@@ -13,11 +13,11 @@ Setup to control a part of the HTML with Vue:
 
     ```javascript
     Vue.createApp({
-    	data() {
+        data() {
             return {
                 courseGoal: 'some goal'
-    		};
-    	}
+            };
+        }
     });
     ```
 
@@ -29,13 +29,13 @@ Setup to control a part of the HTML with Vue:
 
     ```javascript
     Vue.createApp({
-    	data() {
-    		return {
+        data() {
+            return {
                 courseGoal: 'some goal'
-    		};
-    	},
+            };
+        },
     methods: {
-    	outputGoal(){ "some function content with a return value"}
+        outputGoal(){ "some function content with a return value"}
         }
     });
     ```
@@ -44,6 +44,28 @@ Setup to control a part of the HTML with Vue:
     - Vue merges everything inside one object → thats why this works
 - Outputting raw html: `v-html`
 
+- Event binding: `v-on:<html-event-name>`
+  - [official docs](https://v3.vuejs.org/guide/events.html#event-handling) 
+  - Getting the native dom-event inside the eventhandler:
+    - when you dont need to pass any other argument -> call the method reference inside html, browser will pass the even automatically as an argument to the eventhandler
+    - when you do need to pass another argument (or want to explicitly pass the event) -> pass `$event`
+  ```javascript
+  
+    // passing the methodreference instead of calling the method! 
+    <input v-on:input="setName"> 
+  // passing the event explicityl 
+    <input v-on:input="setName($event)"> 
+  
+    setName(event){
+        this.name = event.target.value;    
+    } 
+  ```
+  - Event modifiers:
+    - [Docs](https://v3.vuejs.org/guide/events.html#event-modifiers)
+    - add a `.` after the event name -> `v-on:submit.prevent`
+  - Locking content
+    - using `v-once` -> data binding is only evaluated once!
+      
 ## Section 3: Rendering conditional content and lists
 
 ## Section 4: Course project: The monster slayer game
