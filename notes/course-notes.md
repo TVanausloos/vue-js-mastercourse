@@ -65,6 +65,38 @@ Setup to control a part of the HTML with Vue:
     - add a `.` after the event name -> `v-on:submit.prevent`
   - Locking content
     - using `v-once` -> data binding is only evaluated once!
+  - Two-way binding: 
+    - `v-model="dataProperty"` directive
+  - Since vue does not know the result of a function, it will always re-render the template-parts that have binding to a function! (Does vue have something like reacts memoization ???)
+    - -> methods/functions are not an ideal solution to display dynamicly calculated values!
+    - -> use computed properties
+  - computed properties:
+    - have dependencies
+    - vue will only re-evaluate them when a depency changed (like memoization in react!!!)
+    - add to the object passed to your react app
+    ```javascript
+    {
+       computed: {
+    
+       }  
+    }
+
+    ```
+    - name them like properties (not like methods) because we use them as properties -> we pass the methodreference and let vue handle when to call them!
+    - use only for displaying something!
+  - watchers:
+    - function that is run by vue whenever one of its dependencies changes (runs every time a dependency changes vs only runs when a dependency changes and an evaluation of the template is done (computed values))
+    ```javascript
+    {
+       watch: {
+           <one-of-the-property-names-we-want-to-wacht>(newValue, oldValue){
+            //do something based on the last value of the property being watched
+           }
+       }  
+    }
+    ```
+  - Methods vs computed properties vs watchers:
+  - ![img.png](./img/methods-computed-watchers-summary.png)
       
 ## Section 3: Rendering conditional content and lists
 
