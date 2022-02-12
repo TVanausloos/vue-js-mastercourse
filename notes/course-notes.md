@@ -22,7 +22,8 @@ Setup to control a part of the HTML with Vue:
     ```
 
 - Binding with data via string interpolation: `{{ coarseGoal }}`
-- Binding html attributes to data: `<a v-bind:href="vueLink" ></a>`  -> v-bind:<attribute name>
+- Binding html attributes to data: `<a v-bind:href="vueLink" ></a>`  -> `v-bind:<attribute name>`
+- shorthand: `:<attribute name>`
 - Methods in vue:
     - add extra option/property that we set on the object that is passed to the vue-app.
     - property is an object of functions
@@ -45,6 +46,7 @@ Setup to control a part of the HTML with Vue:
 - Outputting raw html: `v-html`
 
 - Event binding: `v-on:<html-event-name>`
+  - shorthand: `@<event-name>` 
   - [official docs](https://v3.vuejs.org/guide/events.html#event-handling) 
   - Getting the native dom-event inside the eventhandler:
     - when you dont need to pass any other argument -> call the method reference inside html, browser will pass the even automatically as an argument to the eventhandler
@@ -96,7 +98,9 @@ Setup to control a part of the HTML with Vue:
     }
     ```
   - Methods vs computed properties vs watchers:
-  - ![img.png](./img/methods-computed-watchers-summary.png)
+     - ![img.png](./img/methods-computed-watchers-summary.png)
+  - Dynamic styling:
+    -  
       
 ## Section 3: Rendering conditional content and lists
 
