@@ -103,7 +103,25 @@ Setup to control a part of the HTML with Vue:
     -  
       
 ## Section 3: Rendering conditional content and lists
-
+### Conditionally rendering content
+- `v-if`
+  - -> conditional rendering -> add/remove elements from DOM
+- `v-else` 
+  - -> has to be used on an element that comes directly after an element that has `v-if` on it!
+- `v-else-if`
+- `v-show ` 
+  - -> conditional showing (display:none)  
+  - -> show/hide elements that are still attached to the DOM 
+  - -> use when certain content is constantly being hidden/shown
+### Rendering lists
+- `v-for="goal in goals"` 
+  - -> goal of goals is also supported
+  - -> use goal in goals !
+  - `v-for="(goal, index) in goals"`
+  - `v-for="(value, key) in {name: 'tom', age: 35, address: 'VueStreet 36' }"`
+  - `v-for="num in 10"`
+  - ':key="<unique-identifier>' 
+    - -> so that vue can better track what items to add/remove from the DOM when something changes 
 ## Section 4: Course project: The monster slayer game
 
 ## Section 5: Vue, behind the scenes
