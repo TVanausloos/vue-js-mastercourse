@@ -120,7 +120,7 @@ Setup to control a part of the HTML with Vue:
   - `v-for="(goal, index) in goals"`
   - `v-for="(value, key) in {name: 'tom', age: 35, address: 'VueStreet 36' }"`
   - `v-for="num in 10"`
-  - ':key="<unique-identifier>' 
+  - `:key="<unique-identifier>` 
     - -> so that vue can better track what items to add/remove from the DOM when something changes 
 ## Section 4: Course project: The monster slayer game
 
