@@ -299,13 +299,15 @@ Shortcut:
 ```
 
 ### Styles:
+
   - even though css is written iside the <styles> brackets of a component, it does NOT mean that it is scoped to that component!
   - Good practice: write shared styles in AppComponent (see angular styles.scss...)
   - to have your styles scoped add the scoped property to the style tags-> `<style scoped></style>`
     - vue adds `data-v-hash`attribute to your component and the scoped styles
     
 ### Slots
-   - -> content projection (inject a component/template into a wrapper component)
+
+  - -> content projection (inject a component/template into a wrapper component)
 
 ```html
 <template>
@@ -342,6 +344,7 @@ Shortcut:
  - to check the content of your slots in JS -> `this.$slots`
 
 ### Scope slots
+
  - when you want to give the parent component that passes the markup into the slot, access to the data inside the child component (to decide how to render it)
  - child component
 
