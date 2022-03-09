@@ -280,7 +280,112 @@ app.createComponent('html-selector-name', {
          
 
 ## Section 9: Diving deeper into components
+### Local vs global components
+  - app.component(...) ->  global component
+    - global components need to be downloaded on app init
+    - often used for shared components
+  - we can also import components in the script section of another component and then add it to the config object -> local component
+```javascript
+components: {
+    tag: componentConfigObject
+}
+```
+Shortcut:
+```javascript
+ components:{
+    TheHeader
+}
+-> we can now use <TheHeader/> (self closing tag)
+```
 
+### Styles:
+  - even though css is written iside the <styles> brackets of a component, it does NOT mean that it is scoped to that component!
+  - Good practice: write shared styles in AppComponent (see angular styles.scss...)
+  - to have your styles scoped add the scoped property to the style tags-> `<style scoped></style>`
+    - vue adds `data-v-hash`attribute to your component and the scoped styles
+### Slots
+   - -> content projection (inject a component/template into a wrapper component) 
+```html
+<template>
+    <slot>
+<!--        injected content goes here-->
+    </slot>
+</template>
+```
+ - named slots: when you want to use multiple slots inside one component
+ - `<slot name="someName"></slot>`
+```html
+<template>
+   <base-card>
+     <template v-slot:someName>
+<!--            content to project in the someName slot-->
+    </template>
+   <template v-slot:default>
+<!--            content to project in the unnamed/default slot-->
+   </template>
+   </base-card>
+</template>
+```
+ - shorthand notation for `v-slot:slotname` -> `#slotname`
+ - default content: to render when no other content was passed
+```html
+<template>
+    <slot>
+        <div>some default content</div>
+    </slot>
+</template>
+```
+ - to check the content of your slots in JS -> `this.$slots`
+### Scope slots
+ - when you want to give the parent component that passes the markup into the slot, access to the data inside the child component (to decide how to render it)
+ - child component
+```html
+<template>
+    <div v-for="goal in goals">
+        <slot v-bind:item="goal"></slot>
+    </div>
+</template>
+```
+ - parent component
+```html
+<child-component>
+    <template v-slot:default="slotProps">
+        <h2>{{slotProps.item}}</h2>
+    </template>
+</child-component>
+```
+- when you only have one slot you can omit the template tags:
+```html
+<child-component v-slot:default="slotProps">
+        <h2>{{slotProps.item}}</h2>
+</child-component>
+```
+### Dynamic components
+- Vue provides us with the `<component>` tag with attribute `is`
+```html
+<component v-bind:is="selectedComponent"></component>
+<!--selecteComponent holds the selector value of a component-->
+```
+ - when <component> renders a new component, the old one and its state is destroyed!
+   - if you want to keep the state of the old component so that when it is re-enabled, the state is still there -> use `<keep-alive>`
+```html
+<keep-alive>
+    <component v-bind:is="selectedComponent"></component>
+</keep-alive>
+```
+
+### Teleporting elements
+ - often used for accessibility reasons
+   - example: to not have modals nester somewhere in the html we can teleport them to <body> -> better for screen-readers!
+```html
+<teleport to="someCssSelector">
+<!-- some html   -->
+</teleport>
+```
+
+### Folder and file structure
+ - see the [official vue styleguide](https://vuejs.org/style-guide/)
+ - 
 ## Section 10: Course project: The learning resources app
 
 ## Section 11: Forms
