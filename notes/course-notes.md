@@ -303,8 +303,10 @@ Shortcut:
   - Good practice: write shared styles in AppComponent (see angular styles.scss...)
   - to have your styles scoped add the scoped property to the style tags-> `<style scoped></style>`
     - vue adds `data-v-hash`attribute to your component and the scoped styles
+    
 ### Slots
-   - -> content projection (inject a component/template into a wrapper component) 
+   - -> content projection (inject a component/template into a wrapper component)
+
 ```html
 <template>
     <slot>
@@ -314,6 +316,7 @@ Shortcut:
 ```
  - named slots: when you want to use multiple slots inside one component
  - `<slot name="someName"></slot>`
+
 ```html
 <template>
    <base-card>
@@ -328,6 +331,7 @@ Shortcut:
 ```
  - shorthand notation for `v-slot:slotname` -> `#slotname`
  - default content: to render when no other content was passed
+
 ```html
 <template>
     <slot>
@@ -336,9 +340,11 @@ Shortcut:
 </template>
 ```
  - to check the content of your slots in JS -> `this.$slots`
+
 ### Scope slots
  - when you want to give the parent component that passes the markup into the slot, access to the data inside the child component (to decide how to render it)
  - child component
+
 ```html
 <template>
     <div v-for="goal in goals">
@@ -347,6 +353,7 @@ Shortcut:
 </template>
 ```
  - parent component
+
 ```html
 <child-component>
     <template v-slot:default="slotProps">
@@ -355,6 +362,7 @@ Shortcut:
 </child-component>
 ```
 - when you only have one slot you can omit the template tags:
+
 ```html
 <child-component v-slot:default="slotProps">
         <h2>{{slotProps.item}}</h2>
@@ -362,12 +370,14 @@ Shortcut:
 ```
 ### Dynamic components
 - Vue provides us with the `<component>` tag with attribute `is`
+
 ```html
 <component v-bind:is="selectedComponent"></component>
 <!--selecteComponent holds the selector value of a component-->
 ```
  - when <component> renders a new component, the old one and its state is destroyed!
    - if you want to keep the state of the old component so that when it is re-enabled, the state is still there -> use `<keep-alive>`
+   
 ```html
 <keep-alive>
     <component v-bind:is="selectedComponent"></component>
@@ -375,8 +385,10 @@ Shortcut:
 ```
 
 ### Teleporting elements
+
  - often used for accessibility reasons
    - example: to not have modals nester somewhere in the html we can teleport them to <body> -> better for screen-readers!
+   
 ```html
 <teleport to="someCssSelector">
 <!-- some html   -->
