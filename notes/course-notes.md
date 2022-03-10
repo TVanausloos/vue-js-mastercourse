@@ -78,20 +78,20 @@ Setup to control a part of the HTML with Vue:
         - have dependencies
         - vue will only re-evaluate them when a depency changed (like memoization in react!!!)
         - add to the object passed to your react app
+    
       ```javascript
-      {
-         computed: {
-      
-         }  
-      }
+         export default {
+            computed: {}  
+         }
   
       ```
-        - name them like properties (not like methods) because we use them as properties -> we pass the methodreference
-          and let vue handle when to call them!
-        - use only for displaying something!
+      - name them like properties (not like methods) because we use them as properties -> we pass the methodreference
+        and let vue handle when to call them!
+      - use only for displaying something!
     - watchers:
         - function that is run by vue whenever one of its dependencies changes (runs every time a dependency changes vs
           only runs when a dependency changes and an evaluation of the template is done (computed values))
+      
       ```javascript
       {
          watch: {
@@ -104,7 +104,7 @@ Setup to control a part of the HTML with Vue:
     - Methods vs computed properties vs watchers:
         - ![img.png](./img/methods-computed-watchers-summary.png)
     - Dynamic styling:
-      -  
+      - TODO: complete docs here
 
 ## Section 3: Rendering conditional content and lists
 
@@ -181,6 +181,7 @@ app.createComponent('html-selector-name', {
 
 ### parent -> child
 - Use props !
+
    ``` javascript
    {
     props: [
@@ -202,6 +203,7 @@ app.createComponent('html-selector-name', {
     - Validation:
         - Instead of an array of prop-names, you can also pass an object that specifies the fields and types of those
           fields
+      
           ```javascript
             props: {
                name: {
@@ -233,6 +235,7 @@ app.createComponent('html-selector-name', {
 - Parent can listen on these events with `v-on:event-name="doSomething($event)"`
 - To document what events can be emitted by a component -> add the `emits` to the vue-object
 - `emits: ['event-name']`
+
   ```javascript
   {
     emits: {
@@ -255,6 +258,7 @@ app.createComponent('html-selector-name', {
 ###  Provide + inject
 - We can provide data in a parent/ancestor component and inject it in a child component
 - This lets us avoid prop-drilling
+
   ```javascript
   //providing a prop/data
     export default {
@@ -285,12 +289,14 @@ app.createComponent('html-selector-name', {
     - global components need to be downloaded on app init
     - often used for shared components
   - we can also import components in the script section of another component and then add it to the config object -> local component
+
 ```javascript
 components: {
     tag: componentConfigObject
 }
 ```
 Shortcut:
+
 ```javascript
  components:{
     TheHeader
