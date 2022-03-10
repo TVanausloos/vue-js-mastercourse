@@ -102,7 +102,7 @@ Setup to control a part of the HTML with Vue:
       }
       ```
     - Methods vs computed properties vs watchers:
-        - ![img.png](./img/methods-computed-watchers-summary.png)
+      ![img.png](./img/methods-computed-watchers-summary.png)
     - Dynamic styling:
       - TODO: complete docs here
 
