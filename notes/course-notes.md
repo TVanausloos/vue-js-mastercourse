@@ -406,7 +406,7 @@ Shortcut:
 
 ### Folder and file structure
  - see the [official vue styleguide](https://vuejs.org/style-guide/)
- - 
+
 ## Section 10: Course project: The learning resources app
 
 ## Section 11: Forms
@@ -419,13 +419,107 @@ Shortcut:
 
 ## Section 15: Vuex
 
+- What and why
+  - Global state management
+  - TODO: add image here
+- Intall VueX
+- `npm install vuex`
+- Adding vuex to the application
+
+```javascript
+const store = createStore(
+    {
+        state(){
+            return {
+                counter: 0
+            }
+        }
+    }
+);
+```
+- Accessing the store in components:
+
+```javascript
+$store.state.counter;
+```
+
+- Modifying state:
+  - Use mutations
+  - Passing date to mutations with payloads
+```javascript
+const store = createStore(
+    {
+        state(){
+            return {
+                counter: 0
+            }
+        },
+       mutations: {
+        increment(state, payload) {
+            state.counter = state.counter + payload.value;
+        }
+       }
+    }
+);
+```
+
+```javascript
+this.$store.commit('increment', {value: 10});
+```
+ Or alternativly:
+```javascript
+this.$store.commit({
+    'increment',
+    value: 10
+});
+```
+
+
 ## Section 16: Main projects: Find a coach - app
+
+We skipped this section
 
 ## Section 17: Vue and authentication
 
 ## Section 18: Optimizing and deploying vue apps
 
 ## Section 19: The composition API: Replacing the Options API
+
+### Intro
+* Added in vue3
+* Different way of building our components
+* Optional
+* Until now we use the "options api" (define a configuration object)
+* Introduced because we MIGHT encounter 2 issues in bigger applications:
+  1. Code that belongs together logically, is split up over multiple options (data, methods, computed)
+  2. Re-using logic across components can be tricky and cumbersome
+  3. data(), methods, cumputed & watch => setup() + different life-cycle hooks
+  
+### Replacing 'data' withh 'refs'
+
+* ref() creates a reactive value
+
+```javascript
+export default {
+    setup(){
+        const userName = ref('Thomas');
+        // return an object with the values we want to expose to our template 
+        return {username}
+    }
+}
+```
+
+* updating refs:
+```javascript
+// don't reassing username -> we will loose reactive reference
+username.value = 'newValue';
+```
+
+* be carefull what you expose when working with object refs. A ref is a proxy. Exposing the ref.value.property, does not expose the proxy -> vue does not know something changed!
+* an alternative to `ref()` for objects is the `reactive()` funtion (made for objects, works ONLY with objects) 
+   -> does not wrap an extra proxy around the object 
+   -> we can expose the entire reactive object instead of the ref.value 
+
 
 ## Section 20: Reusing functionality: Mixins and custom composition functions
 
