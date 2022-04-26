@@ -8,4 +8,5 @@ Officiat Vue.js 3 documentation: [online docs](https://v3.vuejs.org/)
 
 Notes: 
 - [course-notes](./notes/course-notes.md)
+- [comparison with Angular](./notes/framework-comparison.md)
 - [other-notes](./notes/other-notes.md)
