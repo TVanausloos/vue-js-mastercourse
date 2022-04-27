@@ -519,8 +519,92 @@ username.value = 'newValue';
 * an alternative to `ref()` for objects is the `reactive()` funtion (made for objects, works ONLY with objects) 
    -> does not wrap an extra proxy around the object 
    -> we can expose the entire reactive object instead of the ref.value 
+* when working with refs:
+  * in template: you can omit the `.value` part, vue does this automatically
+  * in javascript: use `.value` to access the actual value instead of the proxy
 
+### Replacing 'data' with regular functions
+* define a new function in the setup() method + export it via the return value
 
+### Replacing computed properties with the computed function
+* `import {computed} from 'vue'`
+* the computed function has 1 argument -> another function
+* vue checks if the dependencies changed -> function is executed everytime a dependencie changes
+* computed properties are read-only refs!
+```javascript
+//firstname and lastname are refs in this case
+const userName = computed(() => {firstname.value + ' ' + lastname.value})
+```
+### 2way binding with the composition API
+* vue 2way-binding also accepts refs! -> not much changes, you just need to make sure to expose the ref you want to use in the tamplate..
+
+### Watchers in the composition API
+* one dependency
+```javascript
+watch(dependency, function(newValue, oldValue))
+```
+* more dependencies
+```javascript
+watch(dependency[], function(newValue[], oldValue[]))
+```
+
+### Some special cases to keep in mind when working with the composition API:
+#### Working with template refs
+* In the options API:
+  * `<button ref="okButton"></button>`
+  * we could access refs via `this.$refs.okButton`
+* Composition API:
+  * `<button ref="okButton"></button>`
+  * ```javascript
+    setup(){
+        const okButton = ref(null)
+        return {okButton};
+    }
+
+    ```
+  * We need to manually create the ref and expose it in order for vue to be able to bind it!
+#### Working with components & props
+* We can no longer access props via `this.propName`
+* Props is the first argument passed by vue to the setup() method!
+* Props is a ref -> vue can detect changes in it and re-run any code that depends on it!
+```javascript
+props: ['firstName', 'lastName'],
+setup(props){
+    const userName = computed(() => {
+        return props.firstName + ' ' + props.lastName
+    })
+}
+```
+
+#### Emitting custom events
+* We can no longer user `this.$emit()`
+* Second parameter to the setup method = context
+* `context.emit()`
+
+#### Working with provide/inject
+* `import {provide} from 'vue'`
+* `provide(key, value)`
+* `import {inject} from 'vue'`
+* `const foo = inject(keyName)`
+
+### Lifecycle hooks in the composition API 
+* `setup()` runs at the same time as `beforeCreated` and `created` ! (setup replaces these hooks)
+* for the other hooks, vue provides some functions
+  * `beforeMount` & `mounted` => `onBeforeMount` & `onMounted`
+  * `beforeUpdate` & `updated` => `onBeforeUpdate` & `onUpdated`
+  * `beforeUnMount`& `unmounted` =? `onBeforeUnMount` & `onUnMounted`
+
+### Routing in the composition API
+* getting url params: 
+  * pass the `props=true` option to the route ->  params will be part of the props received by the component we route to
+  * use hooks/composables from the vue-router 
+    * `import {useRoute} from 'vue-router'` -> get access to the current route
+    * `import {useRouter} from 'vue-router'` -> get access to the router
+    
+### Vuex and the composition API
+* `import {useStore} from 'vuex'` -> get access to the store
+* 
+ 
 ## Section 20: Reusing functionality: Mixins and custom composition functions
 
 ## Section 21: Roundup and next steps
