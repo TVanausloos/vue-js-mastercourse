@@ -603,9 +603,41 @@ setup(props){
     
 ### Vuex and the composition API
 * `import {useStore} from 'vuex'` -> get access to the store
-* 
  
 ## Section 20: Reusing functionality: Mixins and custom composition functions
+* options api -> mixins
+* composition api -> custom composition functions (hooks)
+
+### Reuseability concepts
+* Components (style + logic)
+* What is we want to re-use for example some complex search and filter functionallity accross multiple components? 
+  * -> mixins (or hooks)!
+
+#### Mixins
+* extract the logic of the config object to a separate mixin file
+* inside the component:
+  * import the mixin
+  * include it in the mixins array of the config object
+```javascript
+export default {
+    mixins: [myMixin]
+}
+```
+  * component config can not be shared via mixins!
+  * vue will automatically merge multiple mixins + component options (componet options win if there are conflicts !)
+  * to register global mixins -> `app.mixin(myMixin)`
+  * disadvantages of mixins:
+    * hard to understand your componets (calling methods that belong to a mixin isn't very visible)
+    * when using multiple mixins with the same properties you have to keep track of the merging strategy
+    * custom composition functions solve this issue!
+
+#### Custom composition functions
+* also called hooks or composables
+* function names are typically prefixed with 'use'
+* regular function
+  * can return an object/array/..
+  * can accept parameters
+
 
 ## Section 21: Roundup and next steps
 
