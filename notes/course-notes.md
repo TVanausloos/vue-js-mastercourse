@@ -623,13 +623,13 @@ export default {
     mixins: [myMixin]
 }
 ```
-  * component config can not be shared via mixins!
-  * vue will automatically merge multiple mixins + component options (componet options win if there are conflicts !)
-  * to register global mixins -> `app.mixin(myMixin)`
-  * disadvantages of mixins:
-    * hard to understand your componets (calling methods that belong to a mixin isn't very visible)
-    * when using multiple mixins with the same properties you have to keep track of the merging strategy
-    * custom composition functions solve this issue!
+* component config can not be shared via mixins!
+* vue will automatically merge multiple mixins + component options (componet options win if there are conflicts !)
+* to register global mixins -> `app.mixin(myMixin)`
+* disadvantages of mixins:
+  * hard to understand your componets (calling methods that belong to a mixin isn't very visible)
+  * when using multiple mixins with the same properties you have to keep track of the merging strategy
+  * custom composition functions solve this issue!
 
 #### Custom composition functions
 * also called hooks or composables
