@@ -412,7 +412,15 @@ Shortcut:
 ## Section 11: Forms
 
 ## Section 12: Sending Http Request
-
+* Vue has no built-in clients to send http requests
+* -> use fetch or axios
+* Fetching data on component initialisation:
+  * call the fetch method in the `mounted` hook
+  * Question: "how to make sure the values that return from http requests are reactive?"
+    * -> wrap them in a ref and adjust the value whenever a value returns? 
+    * -> make a wrapper around an axios client and work with observables ? 
+* Error handling -> use axios and add an interceptor!
+ 
 ## Section 13: Routing: Building a multi-page SPA
 
 ## Section 14: Animations and Transitions
