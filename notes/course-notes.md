@@ -503,7 +503,7 @@ We skipped this section
   2. Re-using logic across components can be tricky and cumbersome
   3. data(), methods, cumputed & watch => setup() + different life-cycle hooks
   
-### Replacing 'data' withh 'refs'
+### Replacing 'data' with 'refs'
 
 * ref() creates a reactive value
 
